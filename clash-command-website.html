@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>Clash Command — Village Companion</title>
+<style>
+:root{--bg:#0b1220;--panel:#121e30;--panel2:#17263b;--line:#263951;--text:#edf4ff;--muted:#9fb0c6;--teal:#4de0c1;--gold:#f5c75e;--red:#ff7c85;--blue:#78b7ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 85% -10%,#173c50 0%,transparent 55%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:22px max(18px,calc((100vw - 1180px)/2));border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:#0b1220dd;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.brand{display:flex;gap:12px;align-items:center}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#39d7ba,#3978ad);display:grid;place-items:center;color:#06131c;font-weight:900;font-size:20px}.brand h1{font-size:18px;margin:0}.brand p{margin:0;color:var(--muted);font-size:12px}.status{font-size:12px;color:var(--gold);border:1px solid #66542c;padding:6px 10px;border-radius:20px}
+main{max-width:1180px;margin:auto;padding:24px 18px 60px}.hero{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin:8px 0 22px;flex-wrap:wrap}.eyebrow{color:var(--teal);font-size:11px;letter-spacing:2px;font-weight:800}.hero h2{font-size:clamp(25px,4vw,38px);line-height:1.1;margin:8px 0}.hero p{color:var(--muted);max-width:680px;margin:0}.pill{padding:8px 12px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:12px}
+nav{display:flex;gap:8px;overflow:auto;padding:4px 0 14px;margin-bottom:10px}nav button{white-space:nowrap;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 14px;border-radius:10px;cursor:pointer}nav button.active{background:#16394a;border-color:#267b78;color:#cafff4}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.card{background:linear-gradient(160deg,#15243a,#101b2c);border:1px solid var(--line);border-radius:16px;padding:17px;min-width:0}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-7{grid-column:span 7}.span-6{grid-column:span 6}.span-5{grid-column:span 5}.span-4{grid-column:span 4}
+.card h3{font-size:15px;margin:0 0 12px}.muted{color:var(--muted)}.small{font-size:12px}.metric{font-size:25px;font-weight:750;letter-spacing:-.5px}.metric-label{font-size:12px;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{background:#0d1929;border:1px solid #22364e;border-radius:12px;padding:13px}.stat .metric{font-size:21px}.gold{color:var(--gold)}.purple{color:#c5a3ff}.blue{color:var(--blue)}.teal{color:var(--teal)}
+label{display:block;font-size:12px;color:var(--muted);margin:10px 0 5px}input,select,textarea{width:100%;background:#0b1727;color:var(--text);border:1px solid #2b4059;border-radius:9px;padding:10px;font:inherit;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--teal)}textarea{min-height:90px;resize:vertical}.row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:750;cursor:pointer;background:var(--teal);color:#06201d}.btn.secondary{background:#20364d;color:var(--text);border:1px solid #36506d}.btn.warn{background:#51313a;color:#ffdce0}.btn:disabled{opacity:.5;cursor:not-allowed}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.bar{height:8px;background:#26384d;border-radius:10px;overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;background:linear-gradient(90deg,#2dc5a7,#7ce8d1);width:40%}
+.item{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #26374c}.item:last-child{border:0}.tag{font-size:11px;border:1px solid #35506b;border-radius:20px;padding:3px 8px;color:#b8cce2}.notice{padding:12px;border-radius:11px;background:#132b37;border:1px solid #235c5b;color:#c9fff4;font-size:13px}.warning{background:#30291a;border-color:#65552b;color:#ffe8aa}.hidden{display:none!important}.preview{width:100%;max-height:280px;object-fit:contain;border-radius:10px;background:#08111d;margin-top:10px}.checkrow{display:flex;align-items:center;gap:9px;margin:8px 0}.checkrow input{width:auto}.task{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #26374c}.task input{width:auto;margin-top:4px}.task.done span{text-decoration:line-through;color:#7f91a8}.footer{color:#8194aa;font-size:11px;text-align:center;margin-top:28px}
+@media(max-width:800px){.span-8,.span-7,.span-6,.span-5,.span-4{grid-column:span 12}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:420px){.stats{grid-template-columns:1fr 1fr}.card{padding:14px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">CC</div><div><h1>CLASH COMMAND</h1><p>Village companion · Strategy dashboard</p></div></div><div class="status">COMPANION MODE · NO GAME CONTROL</div></header>
+<main>
+<section class="hero"><div><div class="eyebrow">YOUR VILLAGE, ORGANISED</div><h2>Command your next upgrade.</h2><p>Track resources, review screenshots, plan builders and prepare attack or base strategies from one website.</p></div><div class="pill" id="saveState">Saved on this device</div></section>
+<nav id="tabs"><button class="active" data-tab="overview">Overview</button><button data-tab="scan">Screenshot scan</button><button data-tab="planner">Upgrade planner</button><button data-tab="army">Army & spells</button><button data-tab="base">Base strategy</button><button data-tab="backup">Backup</button></nav>
+
+<section id="overview" class="page">
+<div class="grid">
+<div class="card span-12"><h3>Village snapshot</h3><div class="stats">
+<div class="stat"><div class="metric gold" id="vGold">—</div><div class="metric-label">Gold</div></div>
+<div class="stat"><div class="metric purple" id="vElixir">—</div><div class="metric-label">Elixir</div></div>
+<div class="stat"><div class="metric blue" id="vDark">—</div><div class="metric-label">Dark elixir</div></div>
+<div class="stat"><div class="metric teal" id="vGems">—</div><div class="metric-label">Gems</div></div>
+</div><div class="row" style="margin-top:12px"><div><div class="metric" id="vBuilders">—</div><div class="metric-label">Available builders</div></div><div><div class="metric" id="vTH">Town Hall level</div><div class="metric-label">Village profile</div></div></div></div>
+<div class="card span-7"><h3>Next recommended actions</h3><div id="recommendations"></div></div>
+<div class="card span-5"><h3>Quick village settings</h3><div class="row"><div><label>Town Hall</label><input id="townHall" type="number" min="1" max="18" value="10"></div><div><label>Builders available</label><input id="builders" type="number" min="0" max="6" value="2"></div></div><label>Current goal</label><select id="goal"><option value="balanced">Balanced progress</option><option value="offence">Maximise offence</option><option value="defence">Strengthen defence</option><option value="farm">Improve farming efficiency</option><option value="war">Prepare for war</option></select><div class="actions"><button class="btn" id="saveSettings">Save settings</button></div></div>
+<div class="card span-12"><h3>Recent activity</h3><div id="activity" class="muted small">No activity yet. Save a resource snapshot or add an upgrade target.</div></div>
+</div></section>
+
+<section id="scan" class="page hidden"><div class="grid">
+<div class="card span-7"><h3>Review a village screenshot</h3><p class="muted small">Choose a screenshot from your device. The optional OCR scan tries to read visible numbers; always check the result before saving.</p>
+<label>Choose screenshot</label><input type="file" id="shot" accept="image/*"><img id="preview" class="preview hidden" alt="Selected screenshot preview">
+<div class="actions"><button class="btn" id="runOCR">Scan screenshot</button><button class="btn secondary" id="clearShot">Clear</button></div><p id="ocrStatus" class="small muted">OCR loads only when you press Scan and needs an internet connection the first time.</p></div>
+<div class="card span-5"><h3>Confirm detected values</h3><label>Gold</label><input id="scanGold" inputmode="numeric" placeholder="Not detected yet"><label>Elixir</label><input id="scanElixir" inputmode="numeric" placeholder="Not detected yet"><label>Dark elixir</label><input id="scanDark" inputmode="numeric" placeholder="Not detected yet"><label>Gems</label><input id="scanGems" inputmode="numeric" placeholder="Not detected yet"><label>Builders available</label><input id="scanBuilders" type="number" min="0" max="6" placeholder="Enter if visible"><div class="actions"><button class="btn" id="saveScan">Confirm & save snapshot</button></div></div>
+<div class="card span-12"><div class="notice warning">Important: this website cannot connect to Clash of Clans directly, read the live game screen, or float over another app. Screenshot selection is the supported way to bring visible village information into the dashboard. OCR may misread digits.</div></div>
+</div></section>
+
+<section id="planner" class="page hidden"><div class="grid">
+<div class="card span-5"><h3>Add an upgrade target</h3><label>Building / troop / spell</label><input id="upName" placeholder="e.g. Archer Queen"><div class="row"><div><label>Upgrade cost</label><input id="upCost" type="number" min="0" placeholder="Cost"></div><div><label>Resource</label><select id="upResource"><option>Gold</option><option>Elixir</option><option>Dark Elixir</option></select></div></div><div class="row"><div><label>Time (hours)</label><input id="upTime" type="number" min="0" step=".5" placeholder="e.g. 24"></div><div><label>Priority</label><select id="upPriority"><option value="High">High</option><option value="Medium" selected>Medium</option><option value="Low">Low</option></select></div></div><div class="actions"><button class="btn" id="addUpgrade">Add to plan</button></div></div>
+<div class="card span-7"><h3>Upgrade queue</h3><div id="upgradeList" class="muted small">No upgrades planned yet.</div></div>
+<div class="card span-12"><h3>Planner advice</h3><div id="plannerAdvice" class="notice">Save your resource snapshot and add targets to receive a simple affordability and priority check.</div></div>
+</div></section>
+
+<section id="army" class="page hidden"><div class="grid">
+<div class="card span-6"><h3>Army readiness checklist</h3><p class="muted small">Tick items as you prepare. This is a checklist, not a live game sync.</p><div id="armyChecks"></div></div>
+<div class="card span-6"><h3>Attack strategy notes</h3><label>Target base / opponent notes</label><textarea id="attackNotes" placeholder="Describe the base layout, air defences, infernos, clan castle, traps you suspect, and your planned entry..."></textarea><label>Chosen army composition</label><textarea id="armyNotes" placeholder="Troops, spells, siege machine and clan castle plan..."></textarea><div class="actions"><button class="btn" id="saveArmy">Save strategy notes</button></div></div>
+<div class="card span-12"><div class="notice">The site can help organise your troop and spell levels when you enter them or provide readable screenshots. It cannot inspect hidden game data or automatically change your army.</div></div>
+</div></section>
+
+<section id="base" class="page hidden"><div class="grid">
+<div class="card span-6"><h3>Base design brief</h3><label>Design purpose</label><select id="baseType"><option>War base</option><option>Farming base</option><option>Trophy base</option><option>Hybrid base</option></select><label>What do you want to protect most?</label><select id="protect"><option>Town Hall</option><option>Dark Elixir storage</option><option>All storages</option><option>Defensive core</option></select><label>Threat you face most</label><select id="threat"><option>Air attacks</option><option>Ground attacks</option><option>Mass hog riders</option><option>Dragons</option><option>Mixed attacks</option></select><div class="actions"><button class="btn" id="makeBasePlan">Create design checklist</button></div></div>
+<div class="card span-6"><h3>Suggested design principles</h3><div id="baseAdvice" class="muted small">Choose your base purpose and threat, then generate a checklist.</div></div>
+<div class="card span-12"><div class="notice warning">This planner gives placement principles, not a verified tile-by-tile layout. You still place buildings in the game yourself and should test the layout against replays.</div></div>
+</div></section>
+
+<section id="backup" class="page hidden"><div class="grid">
+<div class="card span-6"><h3>Backup your village data</h3><p class="muted small">Export a JSON copy of your local dashboard data.</p><button class="btn" id="exportData">Export backup</button></div>
+<div class="card span-6"><h3>Restore a backup</h3><label>Select a Clash Command JSON backup</label><input type="file" id="importFile" accept=".json,application/json"><div class="actions"><button class="btn secondary" id="importData">Import backup</button></div></div>
+<div class="card span-12"><button class="btn warn" id="resetData">Reset all local dashboard data</button><p class="muted small">Data is stored in this browser on this device. Clearing browser data may erase it; export backups regularly.</p></div>
+</div></section>
+<div class="footer">CLASH COMMAND · Independent companion website · Not affiliated with or endorsed by Supercell</div>
+</main>
+<script>
+const KEY='clash-command-v1';
+const defaults={gold:0,elixir:0,dark:0,gems:0,builders:2,th:10,goal:'balanced',upgrades:[],activity:[],attackNotes:'',armyNotes:'',checks:{},armyItems:['Army camps full','Clan Castle checked','Heroes available','Spells brewed','Pet/hero equipment checked','Scout target base','Review recent defence replay']};
+let data;try{data={...defaults,...JSON.parse(localStorage.getItem(KEY)||'{}')};}catch(e){data={...defaults};}
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem(KEY,JSON.stringify(data));$('saveState').textContent='Saved on this device';render();}
+function log(msg){data.activity.unshift(new Date().toLocaleString()+' — '+msg);data.activity=data.activity.slice(0,8)}
+function fmt(n){return Number(n||0).toLocaleString('en-IN')}
+function render(){
+$('vGold').textContent=fmt(data.gold);$('vElixir').textContent=fmt(data.elixir);$('vDark').textContent=fmt(data.dark);$('vGems').textContent=fmt(data.gems);$('vBuilders').textContent=data.builders;$('vTH').textContent='TH '+data.th;
+$('townHall').value=data.th;$('builders').value=data.builders;$('goal').value=data.goal;
+$('activity').innerHTML=data.activity.length?data.activity.map(x=>`<div class="item"><span>${esc(x)}</span></div>`).join(''):'No activity yet. Save a resource snapshot or add an upgrade target.';
+$('upgradeList').innerHTML=data.upgrades.length?data.upgrades.map((u,i)=>`<div class="item"><div><b>${esc(u.name)}</b><div class="small muted">${fmt(u.cost)} ${esc(u.resource)} · ${u.time}h · ${esc(u.priority)} priority</div></div><button class="btn secondary" data-remove="${i}">Remove</button></div>`).join(''):'No upgrades planned yet.';
+$('recommendations').innerHTML=advice();
+$('plannerAdvice').textContent=plannerText();
+$('attackNotes').value=data.attackNotes||'';$('armyNotes').value=data.armyNotes||'';
+$('armyChecks').innerHTML=data.armyItems.map((x,i)=>`<label class="checkrow"><input type="checkbox" data-check="${i}" ${data.checks[i]?'checked':''}><span>${esc(x)}</span></label>`).join('');
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function advice(){let goal=data.goal;let arr=[];if(data.builders===0)arr.push('All builders are busy. Plan the next upgrade before one finishes.');else arr.push(`${data.builders} builder(s) available — assign the highest-impact affordable upgrade.`);if(goal==='offence')arr.push('Prioritise army camps, laboratory, barracks and key troop upgrades.');if(goal==='defence')arr.push('Prioritise splash damage, air defence coverage and core protection.');if(goal==='farm')arr.push('Keep collectors and storages progressing; choose upgrades that do not block your farming routine.');if(goal==='war')arr.push('Prioritise war-relevant troops, spell levels, heroes and a tested war layout.');if(goal==='balanced')arr.push('Balance offence, resource generation and key defences rather than maxing one category only.');return arr.map(x=>`<div class="item"><span>${esc(x)}</span></div>`).join('')}
+function plannerText(){if(!data.upgrades.length)return 'Add upgrades to compare their costs with your saved resources.';let lines=data.upgrades.map(u=>{let have=u.resource==='Gold'?data.gold:u.resource==='Elixir'?data.elixir:data.dark;return `${u.name}: ${have>=u.cost?'Affordable with current snapshot':'Not yet affordable'} (${fmt(have)} / ${fmt(u.cost)} ${u.resource}).`});return lines.join(' ')}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(p=>p.classList.toggle('hidden',p.id!==b.dataset.tab));}));
+$('saveSettings').onclick=()=>{data.th=Math.max(1,Math.min(18,+$('townHall').value||10));data.builders=Math.max(0,Math.min(6,+$('builders').value||0));data.goal=$('goal').value;log('Updated village settings');save()};
+$('saveScan').onclick=()=>{for(let [id,key] of [['scanGold','gold'],['scanElixir','elixir'],['scanDark','dark'],['scanGems','gems'],['scanBuilders','builders']]){let v=$(id).value;if(v.trim()!==''&&Number.isFinite(Number(v)))data[key]=Math.max(0,Number(v));}log('Saved confirmed screenshot snapshot');save();alert('Snapshot saved. Check Overview.')};
+$('shot').onchange=e=>{let f=e.target.files[0];if(!f)return;$('preview').src=URL.createObjectURL(f);$('preview').classList.remove('hidden');$('ocrStatus').textContent='Screenshot selected. Press Scan screenshot to attempt reading visible text.'};
+$('clearShot').onclick=()=>{$('shot').value='';$('preview').classList.add('hidden');$('preview').src='';$('ocrStatus').textContent='Screenshot cleared.'};
+$('runOCR').onclick=async()=>{let f=$('shot').files[0];if(!f){alert('Choose a screenshot first.');return;}let btn=$('runOCR');btn.disabled=true;$('ocrStatus').textContent='Loading OCR engine… internet required for first use.';try{if(!window.Tesseract){await new Promise((resolve,reject)=>{let s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';s.onload=resolve;s.onerror=reject;document.head.appendChild(s)})} $('ocrStatus').textContent='Reading screenshot…';let result=await Tesseract.recognize(f,'eng');let raw=result.data.text;let nums=raw.match(/\d[\d,.\s]{2,}/g)||[];let clean=nums.map(x=>x.replace(/[^\d]/g,'' )).filter(x=>x.length>=3);$('ocrStatus').textContent='OCR finished. Text found: '+raw.slice(0,450).replace(/\s+/g,' ');if(clean[0])$('scanGold').value=clean[0];if(clean[1])$('scanElixir').value=clean[1];if(clean[2])$('scanDark').value=clean[2];if(clean[3])$('scanGems').value=clean[3];$('ocrStatus').textContent+=' — Values are guesses. Verify each field manually.';}catch(e){$('ocrStatus').textContent='OCR could not load or scan this image. You can still enter values manually.';}finally{btn.disabled=false}};
+$('addUpgrade').onclick=()=>{let name=$('upName').value.trim(),cost=+$('upCost').value,time=+$('upTime').value;if(!name||!Number.isFinite(cost)||cost<0){alert('Enter an upgrade name and valid cost.');return;}data.upgrades.push({name,cost,resource:$('upResource').value,time:Number.isFinite(time)?time:0,priority:$('upPriority').value});log('Added upgrade target: '+name);$('upName').value='';$('upCost').value='';$('upTime').value='';save()};
+$('upgradeList').onclick=e=>{let i=e.target.dataset.remove;if(i!==undefined){let u=data.upgrades.splice(+i,1)[0];log('Removed upgrade target: '+u.name);save()}};
+$('saveArmy').onclick=()=>{data.attackNotes=$('attackNotes').value;data.armyNotes=$('armyNotes').value;log('Saved army and attack notes');save();alert('Strategy notes saved.')};
+$('armyChecks').onchange=e=>{if(e.target.dataset.check!==undefined){data.checks[e.target.dataset.check]=e.target.checked;save()}};
+$('makeBasePlan').onclick=()=>{let type=$('baseType').value,protect=$('protect').value,threat=$('threat').value;let tips=['Keep key defences covering one another; avoid leaving a single easy entry lane.','Spread important buildings so one deployment cannot reach every high-value target.','Use walls to shape attacker movement, not merely to make a solid outer square.','Place traps where troops are likely to path, then review replays and adjust.'];if(threat==='Air attacks')tips.push('Avoid clustering air-targeting defences; cover the core and likely entry sides.');if(threat==='Ground attacks')tips.push('Use layered compartments and overlapping splash coverage to slow ground pushes.');if(threat==='Dragons')tips.push('Protect air defences from being removed early and avoid giving attackers easy chain value.');$('baseAdvice').innerHTML=`<b>${esc(type)} · protect ${esc(protect)} · threat: ${esc(threat)}</b><ul>${tips.map(x=>'<li>'+esc(x)+'</li>').join('')}</ul><p>Test against replays and adjust traps, compartments and defence coverage.</p>`};
+$('exportData').onclick=()=>{let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='clash-command-backup.json';a.click();URL.revokeObjectURL(a.href)};
+$('importData').onclick=async()=>{let f=$('importFile').files[0];if(!f){alert('Choose a backup file.');return;}try{let obj=JSON.parse(await f.text());data={...defaults,...obj};save();alert('Backup imported.')}catch(e){alert('That backup file is not valid.')}};
+$('resetData').onclick=()=>{if(confirm('Delete all locally saved Clash Command data?')){data={...defaults};save();}};
+render();
+</script>
+</body></html>
